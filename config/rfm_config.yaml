@@ -1,0 +1,51 @@
+# RFM分析配置
+rfm_analysis:
+  # RFM评分标准
+  scoring:
+    recency_days: 30  # 最近活跃天数阈值
+    frequency_threshold: 5  # 频次阈值
+    monetary_threshold: 1000  # 金额阈值（分钟）
+    
+  # 分群规则
+  segments:
+    champions:
+      recency: [4, 5]
+      frequency: [4, 5]
+      monetary: [4, 5]
+      description: "高价值活跃用户"
+      
+    loyal_customers:
+      recency: [3, 4]
+      frequency: [4, 5]
+      monetary: [3, 4]
+      description: "忠诚用户"
+      
+    potential_loyalists:
+      recency: [3, 4]
+      frequency: [2, 3]
+      monetary: [2, 3]
+      description: "潜在忠诚用户"
+      
+    new_customers:
+      recency: [4, 5]
+      frequency: [1, 2]
+      monetary: [1, 2]
+      description: "新用户"
+      
+    at_risk:
+      recency: [1, 2]
+      frequency: [3, 4]
+      monetary: [3, 4]
+      description: "流失风险用户"
+      
+    cannot_lose:
+      recency: [1, 2]
+      frequency: [4, 5]
+      monetary: [4, 5]
+      description: "高价值流失用户"
+      
+# 聚类参数
+clustering:
+  n_clusters: 4
+  random_state: 42
+  features: ["recency", "frequency", "monetary"]

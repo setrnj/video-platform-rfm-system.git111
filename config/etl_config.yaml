@@ -1,0 +1,39 @@
+# ETL流程配置
+etl:
+  # 数据源配置
+  data_sources:
+    media_data:
+      path: "/data/video_analysis/raw/media"
+      format: "csv"
+      delimiter: ","
+      header: true
+      
+    user_data:
+      path: "/data/video_analysis/raw/users"
+      format: "csv"
+      delimiter: ","
+      header: true
+      
+  # 数据清洗规则
+  cleaning_rules:
+    media:
+      duration_validation: "numeric_only"
+      null_handling: "drop"
+      duplicate_handling: "keep_first"
+      
+    users:
+      phone_validation: "regex_pattern"
+      null_handling: "fill_default"
+      
+  # 性能优化配置
+  performance:
+    hive_vectorized: true
+    hive_parallel: true
+    hive_cbo: true
+    memory_allocation: "2048m"
+    
+  # 调度配置
+  scheduling:
+    daily_etl_time: "03:00"
+    retention_days: 90
+    backup_enabled: true

@@ -1,0 +1,15 @@
+USE video_analysis;
+
+CREATE TABLE IF NOT EXISTS user_retention_rate (
+    register_date DATE,
+    retention_day_7 DECIMAL(5,4)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t'
+STORED AS TEXTFILE;
+
+INSERT INTO TABLE user_retention_rate VALUES
+    (DATE_SUB(CURRENT_DATE(), 30), 0.65),
+    (DATE_SUB(CURRENT_DATE(), 29), 0.68),
+    (DATE_SUB(CURRENT_DATE(), 28), 0.72),
+    (DATE_SUB(CURRENT_DATE(), 27), 0.70),
+    (DATE_SUB(CURRENT_DATE(), 26), 0.75);

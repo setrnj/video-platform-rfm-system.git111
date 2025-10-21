@@ -1,0 +1,29 @@
+# 数据库配置文件
+database:
+  hive:
+    host: "localhost"
+    port: 10000
+    database: "video_analysis"
+    username: "hadoop"
+    password: ""
+    
+  hdfs:
+    namenode: "hdfs://localhost:9000"
+    data_path: "/data/video_analysis"
+    
+# 表配置
+tables:
+  raw_tables:
+    - "raw_media"
+    - "raw_users"
+  dimension_tables:
+    - "dim_user"
+    - "dim_time"
+  fact_tables:
+    - "fact_watching"
+    
+# 分区配置
+partitions:
+  fact_watching:
+    partition_column: "dt"
+    partition_format: "yyyy-MM-dd"
